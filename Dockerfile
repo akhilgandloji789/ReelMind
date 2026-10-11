@@ -23,5 +23,5 @@ RUN mkdir -p /app/storage/uploads /app/storage/audio /app/storage/transcripts
 ENV PORT=8000
 EXPOSE 8000
 
-# Start Uvicorn ASGI server
-CMD ["python", "-m", "uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Start Uvicorn ASGI server with dynamic port support
+CMD ["sh", "-c", "python -m uvicorn backend.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
