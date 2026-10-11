@@ -1,16 +1,16 @@
-// ReelMind Service Worker for PWA Installation and Web Share Target
-const CACHE_NAME = "reelmind-v1";
-const OFFLINE_URLS = ["/", "/inbox", "/manifest.json"];
+// ReelMind Service Worker for PWA Installation, Share Target, and Notifications
+const CACHE_NAME = "reelmind-v4";
+const PRECACHE_ASSETS = ["/", "/inbox", "/sunday", "/manifest.json"];
 
 self.addEventListener("install", (event) => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(OFFLINE_URLS).catch((err) => {
-        console.warn("Service worker offline cache prefill skipped:", err);
+      return cache.addAll(PRECACHE_ASSETS).catch((err) => {
+        console.warn("Service worker prefill skipped:", err);
       });
     })
   );
-  self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
@@ -19,6 +19,7 @@ self.addEventListener("activate", (event) => {
       return Promise.all(
         keys.map((key) => {
           if (key !== CACHE_NAME) {
+            console.log("Purging old service worker cache:", key);
             return caches.delete(key);
           }
         })
@@ -55,18 +56,45 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Standard fetch strategy: Network first with cache fallback
-  if (event.request.method === "GET") {
-    event.respondWith(
-      fetch(event.request).catch(async () => {
-        const cachedResponse = await caches.match(event.request);
-        if (cachedResponse) {
-          return cachedResponse;
-        }
-        return caches.match("/");
-      })
-    );
+  // Do not intercept non-GET requests or backend API requests
+  if (event.request.method !== "GET" || url.pathname.startsWith("/api/")) {
+    return;
   }
+
+  // For HTML navigation requests: Network first, fallback to cached HTML
+  if (event.request.mode === "navigate") {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          if (response && response.status === 200) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          }
+          return response;
+        })
+        .catch(async () => {
+          const cached = await caches.match(event.request);
+          if (cached) return cached;
+          return caches.match("/");
+        })
+    );
+    return;
+  }
+
+  // For static assets (scripts, css, images): Network first, fallback to cache, NEVER fallback to '/'
+  event.respondWith(
+    fetch(event.request)
+      .then((response) => {
+        if (response && response.status === 200 && event.request.url.startsWith(self.location.origin)) {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+        }
+        return response;
+      })
+      .catch(() => {
+        return caches.match(event.request);
+      })
+  );
 });
 
 // Push event listener for incoming cloud notifications
