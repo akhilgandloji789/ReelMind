@@ -1,0 +1,162 @@
+{
+  "id": "a234d7fd-b833-45fb-b6f6-ab647ffd8cca",
+  "source": {
+    "type": "url",
+    "filename": null,
+    "url": "https://www.instagram.com/reel/DeK4mHxjqer/?stkn=ZDFzbXE3aDQ4bWxy"
+  },
+  "video_filename": "a234d7fd-b833-45fb-b6f6-ab647ffd8cca.mp4",
+  "duration": 74.73,
+  "languages": [
+    "English"
+  ],
+  "segments": [
+    {
+      "id": 1,
+      "start": 0.0,
+      "end": 3.52,
+      "language": "en",
+      "text": "When you're vibe coding, your agent is going to forget why it built everything."
+    },
+    {
+      "id": 2,
+      "start": 3.52,
+      "end": 8.96,
+      "language": "en",
+      "text": "And two markdown files fixes that. You see, out of the box, your agent reads its recent context."
+    },
+    {
+      "id": 3,
+      "start": 8.96,
+      "end": 12.96,
+      "language": "en",
+      "text": "It doesn't necessarily maintain a record of them. And if you're like me, you're probably building"
+    },
+    {
+      "id": 4,
+      "start": 12.96,
+      "end": 18.16,
+      "language": "en",
+      "text": "on months of decisions, not just two days. So file number one is projectlog.md. It's a"
+    },
+    {
+      "id": 5,
+      "start": 18.16,
+      "end": 23.04,
+      "language": "en",
+      "text": "simple skill file with one standing rule that tells all agents that before a session ends,"
+    },
+    {
+      "id": 6,
+      "start": 23.04,
+      "end": 28.4,
+      "language": "en",
+      "text": "append what you asked for, what you decided and why, and what shipped. And append only so nothing"
+    },
+    {
+      "id": 7,
+      "start": 28.4,
+      "end": 32.4,
+      "language": "en",
+      "text": "And file number two is roadmap.md."
+    },
+    {
+      "id": 8,
+      "start": 32.4,
+      "end": 36.52,
+      "language": "en",
+      "text": "It's another simple skill file where in the markdown, headings are columns, bullets are"
+    },
+    {
+      "id": 9,
+      "start": 36.52,
+      "end": 39.52,
+      "language": "en",
+      "text": "cards, and double brackets opens the full brief."
+    },
+    {
+      "id": 10,
+      "start": 39.52,
+      "end": 44.7,
+      "language": "en",
+      "text": "And both these skill files are linked to a brain epicenter markdown file, so the agents"
+    },
+    {
+      "id": 11,
+      "start": 44.7,
+      "end": 46.92,
+      "language": "en",
+      "text": "has one single front door to find them."
+    },
+    {
+      "id": 12,
+      "start": 46.92,
+      "end": 52.86,
+      "language": "en",
+      "text": "I usually set this up as brain.md and link it up to cloud.md or agents.md so the agents"
+    },
+    {
+      "id": 13,
+      "start": 52.86,
+      "end": 54.52,
+      "language": "en",
+      "text": "can travel through that knowledge path."
+    },
+    {
+      "id": 14,
+      "start": 54.52,
+      "end": 59.56,
+      "language": "en",
+      "text": "Now to set this up into a reliable system, I plug these skill files and my agents into Granula."
+    },
+    {
+      "id": 15,
+      "start": 59.56,
+      "end": 62.2,
+      "language": "en",
+      "text": "It's an agentic terminal app for visionary builders."
+    },
+    {
+      "id": 16,
+      "start": 62.2,
+      "end": 65.56,
+      "language": "en",
+      "text": "Granula then parses those files into a live board."
+    },
+    {
+      "id": 17,
+      "start": 65.56,
+      "end": 67.96,
+      "language": "en",
+      "text": "And once the agent starts working, I just watch it."
+    },
+    {
+      "id": 18,
+      "start": 67.96,
+      "end": 70.76,
+      "language": "en",
+      "text": "It picks a card, does the work, and logs the decision."
+    },
+    {
+      "id": 19,
+      "start": 70.76,
+      "end": 71.8,
+      "language": "en",
+      "text": "I never have to touch it."
+    },
+    {
+      "id": 20,
+      "start": 71.8,
+      "end": 74.6,
+      "language": "en",
+      "text": "Comment memory for the skill, the templates, and the walkthrough."
+    }
+  ],
+  "raw_transcript": "When you're vibe coding, your agent is going to forget why it built everything. And two markdown files fixes that. You see, out of the box, your agent reads its recent context. It doesn't necessarily maintain a record of them. And if you're like me, you're probably building on months of decisions, not just two days. So file number one is projectlog.md. It's a simple skill file with one standing rule that tells all agents that before a session ends, append what you asked for, what you decided and why, and what shipped. And append only so nothing And file number two is roadmap.md. It's another simple skill file where in the markdown, headings are columns, bullets are cards, and double brackets opens the full brief. And both these skill files are linked to a brain epicenter markdown file, so the agents has one single front door to find them. I usually set this up as brain.md and link it up to cloud.md or agents.md so the agents can travel through that knowledge path. Now to set this up into a reliable system, I plug these skill files and my agents into Granula. It's an agentic terminal app for visionary builders. Granula then parses those files into a live board. And once the agent starts working, I just watch it. It picks a card, does the work, and logs the decision. I never have to touch it. Comment memory for the skill, the templates, and the walkthrough.",
+  "corrected_transcript": "When you're vibe coding, your agent is going to forget why it built everything. And two markdown files fixes that. You see, out of the box, your agent reads its recent context. It doesn't necessarily maintain a record of them. And if you're like me, you're probably building on months of decisions, not just two days. So file number one is projectlog.md. It's a simple skill file with one standing rule that tells all agents that before a session ends, append what you asked for, what you decided and why, and what shipped. And append only so nothing And file number two is roadmap.md. It's another simple skill file where in the markdown, headings are columns, bullets are cards, and double brackets opens the full brief. And both these skill files are linked to a brain epicenter markdown file, so the agents has one single front door to find them. I usually set this up as brain.md and link it up to cloud.md or agents.md so the agents can travel through that knowledge path. Now to set this up into a reliable system, I plug these skill files and my agents into Granula. It's an agentic terminal app for visionary builders. Granula then parses those files into a live board. And once the agent starts working, I just watch it. It picks a card, does the work, and logs the decision. I never have to touch it. Comment memory for the skill, the templates, and the walkthrough.",
+  "created_at": "2026-10-07T18:08:00.068741",
+  "status": "completed",
+  "stage_message": "Transcription complete!",
+  "progress_percent": 100,
+  "error": null
+}

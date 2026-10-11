@@ -1,0 +1,19 @@
+{
+  "id": "d8319fe3-65bb-44a7-89e8-8c35f3d8293f",
+  "source": {
+    "type": "upload",
+    "filename": "spoken_sample.mp4",
+    "url": null
+  },
+  "video_filename": "d8319fe3-65bb-44a7-89e8-8c35f3d8293f.mp4",
+  "duration": 5.2,
+  "languages": [],
+  "segments": [],
+  "raw_transcript": "",
+  "corrected_transcript": "",
+  "created_at": "2026-10-07T17:50:54.296730",
+  "status": "extracting_audio",
+  "stage_message": "Extracting audio and applying loudness normalization...",
+  "progress_percent": 35,
+  "error": null
+}

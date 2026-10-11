@@ -1,0 +1,38 @@
+# Environment & Secrets
+.env
+.env.*
+backend/.env
+backend/.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+backend/venv/
+venv/
+.pytest_cache/
+
+# Node & Next.js
+node_modules/
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# Storage / Media files (exclude large binary files and user data)
+storage/uploads/*
+storage/audio/*
+storage/clean.wav
+storage/transcripts/*.json
+storage/inbox.json
+!storage/uploads/.gitkeep
+!storage/audio/.gitkeep
+!storage/transcripts/.gitkeep
+
+# Firebase
+.firebase/
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

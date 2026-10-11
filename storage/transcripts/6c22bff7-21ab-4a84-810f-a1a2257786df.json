@@ -1,0 +1,19 @@
+{
+  "id": "6c22bff7-21ab-4a84-810f-a1a2257786df",
+  "source": {
+    "type": "upload",
+    "filename": "test_sample.mp4",
+    "url": null
+  },
+  "video_filename": "6c22bff7-21ab-4a84-810f-a1a2257786df.mp4",
+  "duration": 0.0,
+  "languages": [],
+  "segments": [],
+  "raw_transcript": "",
+  "corrected_transcript": "",
+  "created_at": "2026-10-07T17:47:25.263930",
+  "status": "failed",
+  "stage_message": "An unexpected error occurred during processing: [WinError 2] The system cannot find the file specified",
+  "progress_percent": 15,
+  "error": "An unexpected error occurred during processing: [WinError 2] The system cannot find the file specified"
+}

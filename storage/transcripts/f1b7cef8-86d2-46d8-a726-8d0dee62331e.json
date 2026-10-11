@@ -1,0 +1,29 @@
+{
+  "id": "f1b7cef8-86d2-46d8-a726-8d0dee62331e",
+  "source": {
+    "type": "upload",
+    "filename": "spoken_sample.mp4",
+    "url": null
+  },
+  "video_filename": "f1b7cef8-86d2-46d8-a726-8d0dee62331e.mp4",
+  "duration": 5.2,
+  "languages": [
+    "English"
+  ],
+  "segments": [
+    {
+      "id": 1,
+      "start": 0.0,
+      "end": 4.5,
+      "language": "en",
+      "text": "Today we will learn how to build full stack applications with react and spring boot."
+    }
+  ],
+  "raw_transcript": "Today we will learn how to build full stack applications with react and spring boot.",
+  "corrected_transcript": "Today we will learn how to build full stack applications with react and spring boot.",
+  "created_at": "2026-10-07T17:58:08.732006",
+  "status": "completed",
+  "stage_message": "Transcription complete!",
+  "progress_percent": 100,
+  "error": null
+}
