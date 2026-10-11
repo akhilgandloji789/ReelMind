@@ -5,9 +5,12 @@ export function getApiBaseUrl(): string {
     return process.env.NEXT_PUBLIC_API_URL;
   }
   if (typeof window !== "undefined" && window.location.hostname) {
+    if (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
+      return "https://reelmind-hxh2.onrender.com";
+    }
     return `http://${window.location.hostname}:8000`;
   }
-  return "http://localhost:8000";
+  return "https://reelmind-hxh2.onrender.com";
 }
 
 export function getVideoMediaUrl(videoFilename?: string): string {
