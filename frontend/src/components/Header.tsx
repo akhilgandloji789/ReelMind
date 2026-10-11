@@ -3,7 +3,8 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Newspaper, FileCheck, Mic, Inbox, Award } from "lucide-react";
+import { Newspaper, FileCheck, Mic, Inbox, Award, Bell, Check } from "lucide-react";
+import { sendMobileNotification } from "../lib/notifications";
 
 export function Header() {
   const pathname = usePathname();
@@ -26,6 +27,22 @@ export function Header() {
     }
   }, []);
 
+  const [notifSent, setNotifSent] = React.useState(false);
+
+  const handleTestNotification = async () => {
+    try {
+      await sendMobileNotification(
+        "🗞️ THE REELMIND CHRONICLE",
+        "Morning Dispatch: Sunday Edition is typeset and ready on the rotary press!",
+        "/sunday"
+      );
+      setNotifSent(true);
+      setTimeout(() => setNotifSent(false), 3000);
+    } catch (e: any) {
+      alert(e.message || "Please tap 'Allow' when your phone asks for notification permission.");
+    }
+  };
+
   return (
     <header className="border-b-2 border-[#111111] bg-[#fbf9f4] no-print">
       {/* Top Broadsheet Weather & Vol Meta Bar */}
@@ -36,9 +53,17 @@ export function Header() {
         <div className="hidden md:block font-bold tracking-widest text-[#111111]">
           ESTABLISHED 2026 • VOL. I, NO. 42 • ALL THE SPOKEN WORDS FIT TO PRINT
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <span>{todayDate}</span>
-          <span className="hidden sm:inline border border-[#111111] px-1.5 py-0.2 text-[9px] font-bold bg-[#111111] text-white">
+          <button
+            onClick={handleTestNotification}
+            className="border border-[#111111] px-2 py-0.5 text-[9px] font-bold bg-[#111111] hover:bg-[#333333] text-white flex items-center gap-1 cursor-pointer transition-colors"
+            title="Send an instant test notification to this phone"
+          >
+            {notifSent ? <Check className="w-2.5 h-2.5 text-emerald-400" /> : <Bell className="w-2.5 h-2.5 text-amber-300" />}
+            <span>{notifSent ? "SENT TO PHONE!" : "TEST PHONE ALERT"}</span>
+          </button>
+          <span className="hidden sm:inline border border-[#111111] px-1.5 py-0.2 text-[9px] font-bold bg-white text-[#111111]">
             LATE CITY EDITION
           </span>
         </div>

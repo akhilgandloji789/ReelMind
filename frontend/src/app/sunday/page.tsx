@@ -19,7 +19,11 @@ import {
   ArrowRight,
   TrendingUp,
   Award,
+  Bell,
+  BellRing,
+  Check,
 } from "lucide-react";
+import { sendMobileNotification } from "../../lib/notifications";
 
 export default function SundayPage() {
   const [digest, setDigest] = useState<SundayDigestData | null>(null);
@@ -42,6 +46,26 @@ export default function SundayPage() {
   useEffect(() => {
     loadDigest();
   }, []);
+
+  const [notifSent, setNotifSent] = useState(false);
+  const [notifLoading, setNotifLoading] = useState(false);
+
+  const handleSendTestNotification = async () => {
+    setNotifLoading(true);
+    try {
+      await sendMobileNotification(
+        "🗞️ THE REELMIND CHRONICLE",
+        `Sunday Edition Ready: ${digest?.total_reels || 14} Dispatches filed this week. Tap to read your intelligence brief!`,
+        "/sunday"
+      );
+      setNotifSent(true);
+      setTimeout(() => setNotifSent(false), 4000);
+    } catch (e: any) {
+      alert(e.message || "Please tap 'Allow' when your phone asks for notification permission.");
+    } finally {
+      setNotifLoading(false);
+    }
+  };
 
   const handleShareEntireDigest = () => {
     if (!digest) return;
@@ -144,6 +168,41 @@ export default function SundayPage() {
           </div>
         ) : digest ? (
           <div className="space-y-8">
+            {/* Mobile Push Notification Alert Box */}
+            <div className="newspaper-box p-4 sm:p-5 bg-[#fbf9f4] border-2 border-[#111111] flex flex-col sm:flex-row items-center justify-between gap-4 no-print">
+              <div className="flex items-center gap-3 w-full sm:w-auto">
+                <div className="p-2.5 bg-[#111111] text-white flex-shrink-0">
+                  <Bell className="w-5 h-5 text-amber-300" />
+                </div>
+                <div>
+                  <h4 className="font-headline font-bold text-sm uppercase tracking-wide text-[#111111]">
+                    Receive Morning Intelligence On Your Mobile Device
+                  </h4>
+                  <p className="font-serif italic text-xs text-[#555555]">
+                    Pops up on your Android notification bar &amp; lock screen every Sunday at 9:00 AM.
+                  </p>
+                </div>
+              </div>
+
+              <button
+                onClick={handleSendTestNotification}
+                disabled={notifLoading}
+                className="w-full sm:w-auto px-4 py-2 bg-[#111111] hover:bg-[#333333] text-white border-2 border-[#111111] text-xs font-wire uppercase font-bold tracking-wider flex items-center justify-center gap-2 cursor-pointer transition-colors flex-shrink-0 shadow-[2px_2px_0px_#111111]"
+              >
+                {notifSent ? (
+                  <>
+                    <Check className="w-4 h-4 text-emerald-400" />
+                    <span>✓ Alert Delivered To Phone!</span>
+                  </>
+                ) : (
+                  <>
+                    <BellRing className="w-4 h-4 text-amber-300" />
+                    <span>Send Notification To My Phone</span>
+                  </>
+                )}
+              </button>
+            </div>
+
             {/* Lead Story: Front-Page Headline & Editorial */}
             <div className="newspaper-box p-6 sm:p-8 bg-white border-4 border-[#111111]">
               <div className="border-b-2 border-[#111111] pb-3 mb-4">

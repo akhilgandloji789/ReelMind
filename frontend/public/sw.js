@@ -68,3 +68,53 @@ self.addEventListener("fetch", (event) => {
     );
   }
 });
+
+// Push event listener for incoming cloud notifications
+self.addEventListener("push", (event) => {
+  let data = {
+    title: "The ReelMind Chronicle",
+    body: "New dispatch printed on the rotary press!",
+    url: "/sunday",
+  };
+  try {
+    if (event.data) {
+      data = event.data.json();
+    }
+  } catch (e) {
+    if (event.data) {
+      data.body = event.data.text();
+    }
+  }
+
+  const options = {
+    body: data.body,
+    icon: "/icon-192.png",
+    badge: "/icon-192.png",
+    vibrate: [200, 100, 200],
+    data: { url: data.url || "/sunday" },
+    actions: [
+      { action: "open", title: "Read Dispatch" },
+      { action: "close", title: "Dismiss" },
+    ],
+  };
+
+  event.waitUntil(self.registration.showNotification(data.title, options));
+});
+
+// Click notification handler
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  const targetUrl = event.notification.data?.url || "/sunday";
+  event.waitUntil(
+    clients.matchAll({ type: "window", includeUncontrolled: true }).then((windowClients) => {
+      for (let client of windowClients) {
+        if (client.url.includes(targetUrl) && "focus" in client) {
+          return client.focus();
+        }
+      }
+      if (clients.openWindow) {
+        return clients.openWindow(targetUrl);
+      }
+    })
+  );
+});
