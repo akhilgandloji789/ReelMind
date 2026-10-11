@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { Copy, Check, Printer, RotateCcw, FileText, Subtitles, Code2, Globe, Languages } from "lucide-react";
+import { Copy, Check, Printer, RotateCcw, FileText, Subtitles, Code2, Globe, Languages, Share2 } from "lucide-react";
 import { TranscriptResult } from "../lib/types";
 import { downloadFile, generateSRT } from "../lib/utils";
+import { formatTranscriptForWhatsApp, openWhatsAppShare } from "../lib/whatsapp";
 
 export type ViewMode = "original" | "english" | "dual";
 
@@ -72,6 +73,18 @@ export function TranscriptToolbar({
     }));
     const srtContent = generateSRT(srtSegments);
     downloadFile(`ReelMind-Captions-${viewMode}-${transcript.id}.srt`, srtContent, "text/plain");
+  };
+
+  const handleWhatsAppShare = () => {
+    const formatted = formatTranscriptForWhatsApp({
+      title: transcript.headline || "Instagram Reel Dispatch",
+      reelUrl: transcript.source?.url,
+      text: getActiveText(),
+      language: transcript.languages && transcript.languages.length > 0 ? transcript.languages.join(", ") : undefined,
+      duration: transcript.duration,
+      viewMode,
+    });
+    openWhatsAppShare(formatted);
   };
 
   return (
@@ -166,8 +179,20 @@ export function TranscriptToolbar({
       </div>
 
       {/* Bottom Actions Row: Action Tools */}
-      <div className="flex flex-wrap items-center justify-end gap-2">
-        {/* Copy Button */}
+      <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
+        {/* Prominent WhatsApp Share Button */}
+        <button
+          type="button"
+          onClick={handleWhatsAppShare}
+          className="font-wire text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 flex items-center gap-1.5 bg-[#25D366] hover:bg-[#1ebc57] text-[#111111] border-2 border-[#111111] shadow-[2px_2px_0px_#111111] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+          title="Share formatted reel link, recipe, and notes directly to WhatsApp"
+        >
+          <Share2 className="w-4 h-4 text-[#111111]" />
+          <span>📲 SHARE TO WHATSAPP</span>
+        </button>
+
+        <div className="flex flex-wrap items-center gap-2">
+          {/* Copy Button */}
         <button
           type="button"
           onClick={handleCopy}
@@ -218,5 +243,6 @@ export function TranscriptToolbar({
         </button>
       </div>
     </div>
+  </div>
   );
 }

@@ -9,6 +9,7 @@ from backend.routes.upload import router as upload_router
 from backend.routes.transcription import router as transcription_router
 from backend.routes.evaluation import router as evaluation_router
 from backend.routes.inbox import router as inbox_router
+from backend.routes.sunday import router as sunday_router
 
 app = FastAPI(
     title="ReelMind API",
@@ -33,6 +34,7 @@ app.include_router(upload_router)
 app.include_router(transcription_router)
 app.include_router(evaluation_router)
 app.include_router(inbox_router)
+app.include_router(sunday_router)
 
 @app.get("/api/health")
 def health_check():

@@ -73,3 +73,31 @@ export interface InboxItem {
   status: "saved" | "transcribing" | "completed";
   job_id?: string;
 }
+
+export interface SundayCategory {
+  name: string;
+  percentage: number;
+  count: number;
+}
+
+export interface SundayBulletin {
+  id: string;
+  title: string;
+  takeaway: string;
+  category: string;
+  reel_url?: string;
+  language?: string;
+}
+
+export interface SundayDigestData {
+  week_label: string;
+  edition_date: string;
+  total_reels: number;
+  total_duration_minutes: number;
+  top_languages: string[];
+  headline: string;
+  editorial: string;
+  categories: SundayCategory[];
+  bulletins: SundayBulletin[];
+  whatsapp_text: string;
+}

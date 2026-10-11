@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Newspaper, FileCheck, Mic, Inbox } from "lucide-react";
+import { Newspaper, FileCheck, Mic, Inbox, Award } from "lucide-react";
 
 export function Header() {
   const pathname = usePathname();
@@ -107,6 +107,18 @@ export function Header() {
             >
               <Inbox className="w-3.5 h-3.5" />
               <span>Wire Inbox</span>
+            </Link>
+
+            <Link
+              href="/sunday"
+              className={`flex items-center gap-1.5 px-3 py-1 text-xs font-wire uppercase font-bold tracking-wider transition-colors border ${
+                pathname === "/sunday"
+                  ? "bg-[#111111] text-white border-[#111111]"
+                  : "bg-transparent text-[#111111] border-transparent hover:border-[#111111]"
+              }`}
+            >
+              <Award className="w-3.5 h-3.5 text-amber-600" />
+              <span>Sunday Edition</span>
             </Link>
 
             <Link

@@ -25,6 +25,7 @@ import {
   ArrowRight,
   Share2,
 } from "lucide-react";
+import { formatTranscriptForWhatsApp, openWhatsAppShare } from "../../lib/whatsapp";
 
 export default function InboxPage() {
   const router = useRouter();
@@ -92,6 +93,15 @@ export default function InboxPage() {
     } catch (err: any) {
       alert(`Could not remove item: ${err.message}`);
     }
+  };
+
+  const handleShareToWhatsApp = (item: InboxItem) => {
+    const formatted = formatTranscriptForWhatsApp({
+      title: item.title || "Instagram Reel Dispatch",
+      reelUrl: item.clean_url || item.url,
+      text: item.shared_text || "Filed in ReelMind Wire Inbox for verbatim audio transcription.",
+    });
+    openWhatsAppShare(formatted);
   };
 
   const handleAddManual = async (e: React.FormEvent) => {
@@ -330,6 +340,15 @@ export default function InboxPage() {
                           )}
                         </button>
                       )}
+
+                      {/* Share to WhatsApp */}
+                      <button
+                        onClick={() => handleShareToWhatsApp(item)}
+                        className="p-2 border-2 border-[#111111] bg-white hover:bg-[#25D366] text-[#111111] transition-colors cursor-pointer"
+                        title="Share Reel to WhatsApp"
+                      >
+                        <Share2 className="w-3.5 h-3.5" />
+                      </button>
 
                       <button
                         onClick={() => handleDelete(item)}

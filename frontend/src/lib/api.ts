@@ -1,4 +1,4 @@
-import { JobStatusResponse, TranscriptResult, EvaluationResult, InquiryResponse, InboxItem } from "./types";
+import { JobStatusResponse, TranscriptResult, EvaluationResult, InquiryResponse, InboxItem, SundayDigestData } from "./types";
 
 export function getApiBaseUrl(): string {
   if (process.env.NEXT_PUBLIC_API_URL) {
@@ -168,5 +168,13 @@ export async function transcribeInboxItem(id: string): Promise<{ job_id: string;
     throw new Error(errData.detail || "Failed to start transcription for inbox item.");
   }
 
+  return res.json();
+}
+
+export async function fetchSundayDigest(): Promise<SundayDigestData> {
+  const res = await fetch(`${getApiBaseUrl()}/api/sunday-digest`);
+  if (!res.ok) {
+    throw new Error(`Failed to fetch Sunday Edition digest: ${res.status}`);
+  }
   return res.json();
 }
